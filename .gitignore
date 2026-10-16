@@ -1,0 +1,13 @@
+# Personal data: never commit
+resume.txt
+resume.pdf
+*.pdf
+.env
+service-account*.json
+credentials*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

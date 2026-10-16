@@ -1,0 +1,177 @@
+# Job search agent settings. Personal details (resume, API keys, sheet ID)
+# never go here: they come from environment variables / GitHub secrets.
+
+timezone: America/Los_Angeles
+run_hour: 8            # local hour the scheduled run is allowed to proceed
+max_per_tab: 5         # new matches added per tab per day
+min_score: 25          # ignore matches scoring below this (0-100)
+lookback_days: 3       # how recent API results must be
+
+# One spreadsheet tab per role track. A job goes to the first tab whose
+# title pattern matches; patterns are case-insensitive regular expressions.
+tabs:
+  - name: Engineering Manager
+    title_pattern: >-
+      \b(engineering manager|manager,? (software |platform |infrastructure )?engineering|software (development |engineering )?manager|(sr\.?|senior) manager,? .*engineering|director,? (of )?(software |platform |infrastructure )?engineering|engineering director|head of (software |platform |infrastructure )?engineering|vp,? (of )?engineering)\b
+    queries:
+      - Engineering Manager
+      - Director of Engineering
+  - name: Senior Engineer & TL
+    title_pattern: >-
+      \b(staff|principal|senior|sr\.?|lead|distinguished)\b.*\b(engineer|developer|architect)\b|\btech(nical)? lead\b|\b(software|systems|network|infrastructure) architect\b
+    queries:
+      - Staff Software Engineer
+      - Principal Software Engineer
+
+# Titles containing any of these are never matches.
+exclude_title_pattern: >-
+  \b(intern|internship|new grad|junior|jr\.?|sales|solutions? engineer|customer|support|recruit\w*|account|marketing|designer|data scientist|product manager|program manager|mechanical|analog|asic|rtl|physical design)\b
+
+# Descriptions containing these are skipped (citizenship / clearance only).
+exclude_description_pattern: >-
+  security clearance|clearance (is )?required|ts/sci|top secret|u\.?s\.? citizenship (is )?required|must be (a )?u\.?s\.? citizen|active (secret|ts) clearance
+
+location:
+  query: San Francisco Bay Area
+  bay_area:
+    - san francisco
+    - south san francisco
+    - bay area
+    - san jose
+    - santa clara
+    - sunnyvale
+    - mountain view
+    - palo alto
+    - menlo park
+    - cupertino
+    - redwood city
+    - milpitas
+    - fremont
+    - oakland
+    - san mateo
+    - foster city
+    - burlingame
+    - san bruno
+    - los gatos
+    - campbell
+    - emeryville
+    - berkeley
+    - pleasanton
+    - san ramon
+    - newark, ca
+  include_remote_us: true
+
+# Companies to boost in ranking. Matches from other companies still appear.
+target_companies:
+  - Google
+  - Meta
+  - Apple
+  - Amazon
+  - AWS
+  - Netflix
+  - Microsoft
+  - NVIDIA
+  - LinkedIn
+  - Uber
+  - Airbnb
+  - Stripe
+  - Databricks
+  - Snowflake
+  - Salesforce
+  - Cloudflare
+  - Pinterest
+
+# Public job boards read directly (in addition to the search APIs).
+boards:
+  greenhouse: [stripe, databricks, airbnb, pinterest, cloudflare]
+  ashby: [snowflake]
+  lever: []
+
+# Skill vocabulary used for keyword matching against the resume.
+skills:
+  - c++
+  - c/c++
+  - python
+  - java
+  - golang
+  - shell scripting
+  - linux
+  - unix
+  - kubernetes
+  - docker
+  - microservices
+  - distributed systems
+  - networking
+  - data center
+  - datacenter
+  - tcp/ip
+  - l2/l3
+  - vxlan
+  - bgp
+  - evpn
+  - sdn
+  - routing
+  - switching
+  - nx-os
+  - telemetry
+  - observability
+  - assurance
+  - monitoring
+  - mongodb
+  - openapi
+  - rest
+  - cloud
+  - aws
+  - gcp
+  - azure
+  - infrastructure
+  - platform
+  - release planning
+  - release management
+  - sdlc
+  - mentoring
+  - people management
+  - hiring
+  - recruiting
+  - performance management
+  - cross-functional
+  - stakeholder
+  - automation
+  - ci/cd
+  - gpu
+  - ai infrastructure
+  - generative ai
+  - ai agents
+  - machine learning
+  - llm
+  - security
+  - load balancing
+  - rdma
+  - infiniband
+  - ethernet
+  - high availability
+  - scalability
+  - reliability
+  - ipc
+  - multithreading
+  - sockets
+  - model-driven
+  - technical leadership
+
+# Domain terms that earn a ranking boost (networking / infra focus).
+domain_terms:
+  - networking
+  - network
+  - data center
+  - datacenter
+  - infrastructure
+  - distributed systems
+  - kubernetes
+  - sdn
+  - telemetry
+  - observability
+  - gpu
+  - ai infrastructure
+  - rdma
+  - infiniband
+  - platform
